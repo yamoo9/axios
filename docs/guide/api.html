@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>API | Axios 러닝 가이드</title>
+    <meta name="description" content="Axios 라이브러리 API에 대해 학습합니다.">
+    <link rel="icon" href="/axios/Ax.png">
+    
+    <link rel="preload" href="/axios/assets/css/0.styles.1b10a11e.css" as="style"><link rel="preload" href="/axios/assets/js/app.1a80074c.js" as="script"><link rel="preload" href="/axios/assets/js/2.99eac131.js" as="script"><link rel="preload" href="/axios/assets/js/7.816c12a8.js" as="script"><link rel="prefetch" href="/axios/assets/js/10.5c03c110.js"><link rel="prefetch" href="/axios/assets/js/11.3692d164.js"><link rel="prefetch" href="/axios/assets/js/12.df1a1c36.js"><link rel="prefetch" href="/axios/assets/js/13.3c1d7761.js"><link rel="prefetch" href="/axios/assets/js/14.f4087f24.js"><link rel="prefetch" href="/axios/assets/js/15.d234b670.js"><link rel="prefetch" href="/axios/assets/js/16.009a035f.js"><link rel="prefetch" href="/axios/assets/js/17.61a4fe9c.js"><link rel="prefetch" href="/axios/assets/js/18.0e4a9031.js"><link rel="prefetch" href="/axios/assets/js/3.1c235ff0.js"><link rel="prefetch" href="/axios/assets/js/4.523eff6e.js"><link rel="prefetch" href="/axios/assets/js/5.e136206f.js"><link rel="prefetch" href="/axios/assets/js/6.a104cec4.js"><link rel="prefetch" href="/axios/assets/js/8.ece2c99a.js"><link rel="prefetch" href="/axios/assets/js/9.2d332d66.js">
+    <link rel="stylesheet" href="/axios/assets/css/0.styles.1b10a11e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/axios/" class="home-link router-link-active"><img src="/axios/Ax.png" alt="Axios 러닝 가이드" class="logo"> <span class="site-name can-hide">Axios 러닝 가이드</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/axios/guide/" class="nav-link router-link-active">가이드북</a></div><div class="nav-item"><a href="https://github.com/axios/axios" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  공식 문서
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/axios/guide/" class="nav-link router-link-active">가이드북</a></div><div class="nav-item"><a href="https://github.com/axios/axios" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  공식 문서
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/axios/guide/" class="sidebar-link">Axios</a></li><li><a href="/axios/guide/install.html" class="sidebar-link">설치</a></li><li><a href="/axios/guide/usage.html" class="sidebar-link">사용법</a></li><li><a href="/axios/guide/api.html" class="active sidebar-link">API</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/axios/guide/api.html#http-메서드-별칭" class="sidebar-link">HTTP 메서드 별칭</a></li><li class="sidebar-sub-header"><a href="/axios/guide/api.html#동시성-concurrency" class="sidebar-link">동시성(Concurrency)</a></li><li class="sidebar-sub-header"><a href="/axios/guide/api.html#인스턴스-생성" class="sidebar-link">인스턴스 생성</a></li><li class="sidebar-sub-header"><a href="/axios/guide/api.html#인스턴스-메서드" class="sidebar-link">인스턴스 메서드</a></li><li class="sidebar-sub-header"><a href="/axios/guide/api.html#구성-옵션" class="sidebar-link">구성 옵션</a></li></ul></li><li><a href="/axios/guide/response-schema.html" class="sidebar-link">응답 스키마</a></li><li><a href="/axios/guide/config-defaults.html" class="sidebar-link">Config 기본 설정</a></li><li><a href="/axios/guide/interceptors.html" class="sidebar-link">인터셉터</a></li><li><a href="/axios/guide/error-handling.html" class="sidebar-link">오류 처리</a></li><li><a href="/axios/guide/cancellation.html" class="sidebar-link">요청 취소</a></li><li><a href="/axios/guide/form-format.html" class="sidebar-link">Form 전송 주의사항</a></li><li><a href="/axios/guide/refs.html" class="sidebar-link">참고</a></li></ul> </aside> <main class="page"> <div class="content default"><h1 id="api"><a href="#api" aria-hidden="true" class="header-anchor">#</a> API</h1> <p>구성(configuration) 설정을<code>axios()</code>에 전달하여 요청할 수 있습니다.</p> <pre><code>axios(config)
+</code></pre> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// POST 요청 전송</span>
+<span class="token function">axios</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  method<span class="token punctuation">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
+  url<span class="token punctuation">:</span> <span class="token string">'/user/12345'</span><span class="token punctuation">,</span>
+  data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    firstName<span class="token punctuation">:</span> <span class="token string">'Fred'</span><span class="token punctuation">,</span>
+    lastName<span class="token punctuation">:</span> <span class="token string">'Flintstone'</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// 원격 이미지 GET 요청</span>
+<span class="token function">axios</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  method<span class="token punctuation">:</span><span class="token string">'get'</span><span class="token punctuation">,</span>
+  url<span class="token punctuation">:</span><span class="token string">'http://bit.ly/2mTM3nY'</span><span class="token punctuation">,</span>
+  responseType<span class="token punctuation">:</span><span class="token string">'stream'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>response<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    response<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>fs<span class="token punctuation">.</span><span class="token function">createWriteStream</span><span class="token punctuation">(</span><span class="token string">'ada_lovelace.jpg'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p><code>axios()</code>에 url을 전달해 요청할 수 있습니다. 선택적으로 <code>config</code> 객체를 2번째 인자로 추가 전달할 수 있습니다.</p> <pre><code>axios(url[, config])
+</code></pre> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// GET 요청 전송 (기본 메서드)</span>
+<span class="token function">axios</span><span class="token punctuation">(</span><span class="token string">'/user/12345'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h2 id="http-메서드-별칭"><a href="#http-메서드-별칭" aria-hidden="true" class="header-anchor">#</a> HTTP 메서드 별칭</h2> <p>편의를 위해 지원되는 모든 요청 메소드에 별칭이 제공됩니다.</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>axios.get(url[, config])            // GET
+axios.post(url[, data[, config]])   // POST
+axios.put(url[, data[, config]])    // PUT
+axios.patch(url[, data[, config]])  // PATCH
+axios.delete(url[, config])         // DELETE
+
+axios.request(config)
+axios.head(url[, config])
+axios.options(url[, config])
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><div class="tip custom-block"><p class="custom-block-title">NOTE</p> <p>별칭 메소드를 사용하면 설정(config)에서 <code>url</code>, <code>method</code> 및 <code>data</code> 속성을 지정할 필요가 없습니다.</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// axios() 사용 시</span>
+
+<span class="token function">axios</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  url<span class="token punctuation">:</span> <span class="token string">'/user/12345'</span><span class="token punctuation">,</span>
+  method<span class="token punctuation">:</span> <span class="token string">'put'</span><span class="token punctuation">,</span>
+  data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    firstName<span class="token punctuation">:</span> <span class="token string">'Fred'</span><span class="token punctuation">,</span>
+    lastName<span class="token punctuation">:</span> <span class="token string">'Flintstone'</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// axios.put() 별칭 메서드 사용 시</span>
+
+axios<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">'/user/12345'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  firstName<span class="token punctuation">:</span> <span class="token string">'Fred'</span><span class="token punctuation">,</span>
+  lastName<span class="token punctuation">:</span> <span class="token string">'Flintstone'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div></div> <h2 id="동시성-concurrency"><a href="#동시성-concurrency" aria-hidden="true" class="header-anchor">#</a> 동시성(Concurrency)</h2> <p>동시(Concurrency) 요청 처리를 위한 헬퍼 함수</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>axios.all(iterable)
+axios.spread(callback)
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h2 id="인스턴스-생성"><a href="#인스턴스-생성" aria-hidden="true" class="header-anchor">#</a> 인스턴스 생성</h2> <p><code>.create()</code> 메서드를 사용해 사용자 정의 구성을 사용하는 axios 인스턴스를 생성할 수 있습니다.</p> <pre><code>axios.create([config])
+</code></pre> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token keyword">const</span> instance <span class="token operator">=</span> axios<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  baseURL<span class="token punctuation">:</span> <span class="token string">'https://some-domain.com/api/'</span><span class="token punctuation">,</span>
+  headers<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token string">'X-Custom-Header'</span><span class="token punctuation">:</span> <span class="token string">'foobar'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  timeout<span class="token punctuation">:</span> <span class="token number">1000</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h2 id="인스턴스-메서드"><a href="#인스턴스-메서드" aria-hidden="true" class="header-anchor">#</a> 인스턴스 메서드</h2> <p>사용 가능한 인스턴스 메소드는 다음과 같습니다. 설정된 구성(config)이 인스턴스 구성과 병합 됩니다.</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>axios.get(url[, config])
+axios.post(url[, data[, config]])
+axios.put(url[, data[, config]])
+axios.patch(url[, data[, config]])
+axios.delete(url[, config])
+axios.request(config)
+axios.head(url[, config])
+axios.options(url[, config])
+axios.getUri([config])
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h2 id="구성-옵션"><a href="#구성-옵션" aria-hidden="true" class="header-anchor">#</a> 구성 옵션</h2> <p>사용 가능한 구성(conifg) 설정 옵션입니다.</p> <div class="tip custom-block"><p class="custom-block-title">NOTE</p> <p><code>url</code> 속성만 필수이고, 나머지 속성은 옵션입니다.
+<code>method</code>가 지정되지 않으면 요청은<code>GET</code>으로 기본 설정 됩니다.</p></div> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token punctuation">{</span>
+  <span class="token comment">// `url`은 요청에 사용될 서버 URL입니다.</span>
+  url<span class="token punctuation">:</span> <span class="token string">'/user'</span><span class="token punctuation">,</span>
+
+  <span class="token comment">// `method`는 요청을 할 때 사용될 메소드 이름입니다.</span>
+  method<span class="token punctuation">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span> <span class="token comment">// 기본</span>
+
+  <span class="token comment">// `url` 속성 값이 절대 URL이 아니라면, `url` 앞에 `baseURL`이 붙습니다.</span>
+  <span class="token comment">// axios 인스턴스가 상대 URL을 해당 인스턴스의 메소드에 전달하도록</span>
+  <span class="token comment">// `baseURL`을 설정하는 것이 편리 할 수 ​​있습니다.</span>
+  baseURL<span class="token punctuation">:</span> <span class="token string">'https://some-domain.com/api/'</span><span class="token punctuation">,</span>
+
+  <span class="token comment">// `transformRequest`는 서버에 보내기 전에 요청 데이터를 변경할 수 있습니다.</span>
+  <span class="token comment">// 요청 메소드 'PUT', 'POST' 및 'PATCH' 에만 적용 가능합니다.</span>
+  <span class="token comment">// 배열의 마지막 함수는 버퍼(buffer)의 문자열이나 인스턴스를 반환해야 합니다.</span>
+  <span class="token comment">// ArrayBuffer, FormData 또는 Stream 헤더 객체를 수정할 수 있습니다.</span>
+  transformRequest<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token keyword">function</span> <span class="token punctuation">(</span>data<span class="token punctuation">,</span> headers<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 데이터 변환 수행 후, 반환</span>
+    <span class="token comment">// ...</span>
+    <span class="token keyword">return</span> data<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+  <span class="token comment">// `transformResponse`는 응답할 데이터에 대한 변경을 전달해</span>
+  <span class="token comment">// then/catch에 전달하도록 허용합니다.</span>
+  transformResponse<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token keyword">function</span> <span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 데이터 변환 수행 후, 반환</span>
+    <span class="token comment">// ...</span>
+    <span class="token keyword">return</span> data<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+  <span class="token comment">// `headers`는 서버에 전송 될 사용자 정의 헤더 입니다.</span>
+  headers<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token string">'X-Requested-With'</span><span class="token punctuation">:</span> <span class="token string">'XMLHttpRequest'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token comment">// `params`는 요청과 함께 전송 될 URL 매개 변수입니다.</span>
+  <span class="token comment">// 일반 객체 이거나 URLSearchParams 객체여야 합니다.</span>
+  params<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token constant">ID</span><span class="token punctuation">:</span> <span class="token number">12345</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token comment">// `paramsSerializer`는`params`를 직렬화(serializing) 하는 옵션 함수입니다.</span>
+  <span class="token comment">// (예: https://www.npmjs.com/package/qs, http://api.jquery.com/jquery.param/)</span>
+  paramsSerializer<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>params<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> Qs<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>params<span class="token punctuation">,</span> <span class="token punctuation">{</span>arrayFormat<span class="token punctuation">:</span> <span class="token string">'brackets'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token comment">// `data`는 요청 본문(request body)으로 전송할 데이터입니다.</span>
+  <span class="token comment">// 'PUT', 'POST' 및 'PATCH' 요청 메소드에만 적용 가능합니다.</span>
+  <span class="token comment">// 'transformRequest`가 설정되지 않은 경우 다음 유형 중 하나여야 합니다.</span>
+  <span class="token comment">// - [ string, plain object, ArrayBuffer, ArrayBufferView, URLSearchParams ]</span>
+  <span class="token comment">// - 브라우저 전용: FormData, File, Blob</span>
+  <span class="token comment">// - Node.js 전용: Stream, Buffer</span>
+  data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    firstName<span class="token punctuation">:</span> <span class="token string">'Fred'</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token comment">// `timeout`은 요청이 타임 아웃되는 밀리 초(ms)를 설정합니다.</span>
+  <span class="token comment">// 요청이`timeout` 설정 시간보다 지연될 경우, 요청은 중단됩니다.</span>
+  timeout<span class="token punctuation">:</span> <span class="token number">1000</span><span class="token punctuation">,</span> <span class="token comment">// 기본 값: `0` (타임아웃 없음)</span>
+
+  <span class="token comment">// `withCredentials`는 자격 증명(credentials)을 사용하여</span>
+  <span class="token comment">// 크로스 사이트 접근 제어(cross-site Access-Control) 요청이 필요한 경우 설정합니다.</span>
+  withCredentials<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// 기본 값</span>
+
+  <span class="token comment">// `adapter`는 테스트를 보다 쉽게 해주는 커스텀 핸들링 요청을 허용합니다.</span>
+  <span class="token comment">// 유효한 응답(Promise)을 반환해야 합니다. (lib/adapters/README.md 참고).</span>
+  adapter<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>config<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token comment">// `auth`는 HTTP 기본 인증(auth)이 사용되며, 자격 증명(credentials)을 제공함을 나타냅니다.</span>
+  <span class="token comment">// 기존의 `Authorization` 커스텀 헤더를 덮어쓰는 `Authorization` 헤더(header)를 설정합니다.</span>
+  auth<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    username<span class="token punctuation">:</span> <span class="token string">'janedoe'</span><span class="token punctuation">,</span>
+    password<span class="token punctuation">:</span> <span class="token string">'s00pers3cret'</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token comment">// `responseType`은 서버에서 응답할 데이터 타입을 설정합니다.</span>
+  <span class="token comment">// [ 'arraybuffer', 'blob', 'document', 'json', 'text', 'stream' ]</span>
+  responseType<span class="token punctuation">:</span> <span class="token string">'json'</span><span class="token punctuation">,</span> <span class="token comment">// 기본 값</span>
+
+  <span class="token comment">// `responseEncoding`은 응답 디코딩에 사용할 인코딩을 나타냅니다.</span>
+  <span class="token comment">// [주의!] 클라이언트 사이드 요청 또는 `responseType`이 'stream'인 경우는 무시합니다.</span>
+  responseEncoding<span class="token punctuation">:</span> <span class="token string">'utf8'</span><span class="token punctuation">,</span> <span class="token comment">// 기본 값</span>
+
+  <span class="token comment">// `xsrfCookieName`은 xsrf 토큰(token)에 대한 값으로 사용할 쿠키 이름입니다.</span>
+  xsrfCookieName<span class="token punctuation">:</span> <span class="token string">'XSRF-TOKEN'</span><span class="token punctuation">,</span> <span class="token comment">// 기본 값</span>
+
+  <span class="token comment">// `xsrfHeaderName`은 xsrf 토큰 값을 운반하는 HTTP 헤더 이름입니다.</span>
+  xsrfHeaderName<span class="token punctuation">:</span> <span class="token string">'X-XSRF-TOKEN'</span><span class="token punctuation">,</span> <span class="token comment">// 기본 값</span>
+
+  <span class="token comment">// `onUploadProgress`는 업로드 프로그래스 이벤트를 처리합니다.</span>
+  onUploadProgress<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>progressEvent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 네이티브 프로그래스 이벤트(Native Progress Event) 처리 코드</span>
+    <span class="token comment">// ...</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token comment">// `onDownloadProgress`는 다운로드 프로그래스 이벤트를 처리합니다.</span>
+  onDownloadProgress<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>progressEvent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 네이티브 프로그래스 이벤트(Native Progress Event) 처리 코드</span>
+    <span class="token comment">// ...</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token comment">// `maxContentLength`는 HTTP 응답 콘텐츠의 최대 크기를 바이트(Bytes) 단위로 설정합니다.</span>
+  maxContentLength<span class="token punctuation">:</span> <span class="token number">2000</span><span class="token punctuation">,</span>
+
+ <span class="token comment">// `validateStatus`는 주어진 HTTP 응답 상태 코드에 대한 약속을 해결할지 거절 할지를 정의합니다.</span>
+ <span class="token comment">// `validateStatus`가`true`를 반환하면 (또는`null`,`undefined`) promise를 resolve 합니다.</span>
+ <span class="token comment">// 그렇지 않으면 promise가 reject 됩니다.</span>
+  validateStatus<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>status<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> status <span class="token operator">&gt;=</span> <span class="token number">200</span> <span class="token operator">&amp;&amp;</span> status <span class="token operator">&lt;</span> <span class="token number">300</span><span class="token punctuation">;</span> <span class="token comment">// 기본 값</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token comment">// `maxRedirects`는 Node.js에서 리디렉션 가능한 최대 갯수를 정의합니다.</span>
+  <span class="token comment">// 0으로 설정하면 리디렉션이 수행되지 않습니다.</span>
+  maxRedirects<span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token comment">// 기본 값</span>
+
+  <span class="token comment">// `socketPath`는 Node.js에서 사용될 UNIX 소켓을 정의합니다.</span>
+  <span class="token comment">// 예: '/var/run/docker.sock'을 사용하여 docker 데몬에 요청을 보냅니다.</span>
+  <span class="token comment">// `socketPath` 또는`proxy`만이 지정 될 수 있습니다.</span>
+  <span class="token comment">// 둘 다 지정되면`socketPath`가 사용됩니다.</span>
+  socketPath<span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token comment">// 기본 값</span>
+
+  <span class="token comment">// `httpAgent`와`httpsAgent`는 각각 Node.js에서 http와 https 요청을 수행 할 때</span>
+  <span class="token comment">// 사용할 커스텀 에이전트를 정의합니다. 이것은 기본적으로 활성화되지 않은 `keepAlive`와 같은</span>
+  <span class="token comment">// 옵션을 추가 할 수 있게 합니다.</span>
+  httpAgent<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">http<span class="token punctuation">.</span>Agent</span><span class="token punctuation">(</span><span class="token punctuation">{</span> keepAlive<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  httpsAgent<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">https<span class="token punctuation">.</span>Agent</span><span class="token punctuation">(</span><span class="token punctuation">{</span> keepAlive<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+
+  <span class="token comment">// 'proxy'는 프록시 서버의 호스트 이름과 포트를 정의합니다.</span>
+  <span class="token comment">// 기존의 `http_proxy` 및 `https_proxy` 환경 변수를 사용하여 프록시를 정의 할 수도 있습니다.</span>
+  <span class="token comment">// 프록시 설정에 환경 변수를 사용하고 있다면 `no_proxy` 환경 변수를 쉼표로 구분 된 도메인 목록으로</span>
+  <span class="token comment">// 정의하여 프록시 할 필요가 없습니다.</span>
+  <span class="token comment">// 환경 변수를 무시하고 프록시를 사용하지 않으려면 `false`를 설정합니다.</span>
+  <span class="token comment">// `auth`는 HTTP 기본 인증(Basic Auth)를 사용하여 프록시에 연결하고 자격 증명을 제공해야 함을 나타냅니다.</span>
+  <span class="token comment">// 기존의 `Proxy-Authorization` 커스텀 헤더를 덮어쓰는 `Proxy-Authorization` 헤더(header)를 설정합니다.</span>
+  proxy<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    host<span class="token punctuation">:</span> <span class="token string">'127.0.0.1'</span><span class="token punctuation">,</span>
+    port<span class="token punctuation">:</span> <span class="token number">9000</span><span class="token punctuation">,</span>
+    auth<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      username<span class="token punctuation">:</span> <span class="token string">'mikeymike'</span><span class="token punctuation">,</span>
+      password<span class="token punctuation">:</span> <span class="token string">'rapunz3l'</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token comment">// `cancelToken`은 요청을 취소하는 데 사용할 수 있는 취소 토큰을 지정합니다.</span>
+  <span class="token comment">// (자세한 내용은 해제(Cancellation) 섹션 참조).</span>
+  cancelToken<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">CancelToken</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>cancel<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br><span class="line-number">126</span><br><span class="line-number">127</span><br><span class="line-number">128</span><br><span class="line-number">129</span><br><span class="line-number">130</span><br><span class="line-number">131</span><br><span class="line-number">132</span><br><span class="line-number">133</span><br><span class="line-number">134</span><br><span class="line-number">135</span><br><span class="line-number">136</span><br><span class="line-number">137</span><br><span class="line-number">138</span><br><span class="line-number">139</span><br><span class="line-number">140</span><br><span class="line-number">141</span><br><span class="line-number">142</span><br><span class="line-number">143</span><br><span class="line-number">144</span><br><span class="line-number">145</span><br><span class="line-number">146</span><br><span class="line-number">147</span><br><span class="line-number">148</span><br><span class="line-number">149</span><br><span class="line-number">150</span><br><span class="line-number">151</span><br></div></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/axios/guide/usage.html" class="prev">
+          사용법
+        </a></span> <span class="next"><a href="/axios/guide/response-schema.html">
+          응답 스키마
+        </a>
+        →
+      </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/axios/assets/js/app.1a80074c.js" defer></script><script src="/axios/assets/js/2.99eac131.js" defer></script><script src="/axios/assets/js/7.816c12a8.js" defer></script>
+  </body>
+</html>

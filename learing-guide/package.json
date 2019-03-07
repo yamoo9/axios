@@ -1,0 +1,12 @@
+{
+  "name": "learing-guide",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.0.0-alpha.42"
+  }
+}
